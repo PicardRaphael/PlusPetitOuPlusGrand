@@ -3,10 +3,11 @@ var max;
 var nbrUser;
 var nbrRandom;
 var nbrTry = 0;
+var nbrChance = 10;
 
 initGame();
 
-//Paramètre de game
+//Fonction  pour paramétrer la game !
 function initGame(){
   alert('Choisis ton interval !');
   //On définit l'interval minimal
@@ -25,37 +26,38 @@ function initGame(){
   Manche(nbrRandom, min, max, msg);
 }
 
-
+//Fonction pour lancer la partie
 function Manche(nbrRandom, min, max, msg) {
   // debugger;
   do{
-
+    
     nbrUser = prompt(msg);
     //On affiche le nbruser dans la consol !
     console.log(nbrUser);
 
-    nbrTry++
+    nbrTry++;
+    console.log(nbrTry);
     if(min > nbrUser || nbrUser > max){
-      msg = 'Le nombre à deviner est compris entre ' + min + ' et ' + max;
+      msg = 'Le nombre à deviner est compris entre ' + min + ' et ' + max +' il te reste ' + (nbrChance - nbrTry) + ' vie';
     }
     else if (nbrUser < nbrRandom){
-      msg = 'Le nombre à deviner est plus grand !';
+      msg = 'Le nombre à deviner est plus grand ! il te reste ' + (nbrChance - nbrTry) + ' vie';
     }else{
-      msg = 'Le nombre à deviner est plus petit !';
+      msg = 'Le nombre à deviner est plus petit ! il te reste ' + (nbrChance - nbrTry) + ' vie';
     }
-  }while(nbrUser != nbrRandom);
+  }while(nbrTry <= nbrChance && nbrUser != nbrRandom);
 
   // Suivant le nombre de coup utilisé pour trouver le nombre !
-  if (nbrTry === 1){
-    alert('Félicitation !! Tu as trouvé le nombre en ' + nbrTry + ' coup');
+  if(nbrTry >= nbrChance){
+    alert('You loose !');
   }else{
-    alert('Félicitation !! Tu as trouvé le nombre en ' + nbrTry + ' coups');
+    alert('Félicitation !! Tu as trouvé le nombre en ' + nbrTry + ' coup');
   }
 
   newGame = prompt('Veux-tu rejouer ? yes ou no');
   console.log(newGame);
   if(newGame === 'yes'){
-    location.reload();
+    location.reload(true);
   }
 }
 
