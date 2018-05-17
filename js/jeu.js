@@ -7,7 +7,9 @@ var nbrChance;
 
 initGame();
 
-//Fonction  pour paramétrer la game !
+/*
+Fonction  pour paramétrer la game !
+*/
 function initGame(){
   alert('Choisis ton interval !');
   //L'utilisateur définit l'interval minimal
@@ -28,17 +30,22 @@ function initGame(){
   Manche(nbrRandom, min, max, msg, nbrChance);
 }
 
-//Fonction pour lancer la partie
+/*
+Fonction pour lancer la partie
+*/
 function Manche(nbrRandom, min, max, msg, nbrChance) {
   // debugger;
+  //Tan que nbrUser différent nbrRandom & nbrTry inf à nbrChance
   do{
 
     nbrUser = prompt(msg);
-    //On affiche le nbruser dans la consol !
+    //On affiche le nbrUser dans la consol !
     console.log(nbrUser);
-
+    //On incrémente 1 à nbrTry.
     nbrTry++;
+    //On affiche le nbrTry dans la consol !
     console.log(nbrTry);
+    //Suivant nbrUser on fait !!
     if(min > nbrUser || nbrUser > max){
       msg = 'Le nombre à deviner est compris entre ' + min + ' et ' + max +' il te reste ' + (nbrChance - nbrTry) + ' vie';
     }
@@ -47,7 +54,7 @@ function Manche(nbrRandom, min, max, msg, nbrChance) {
     }else{
       msg = 'Le nombre à deviner est plus petit ! il te reste ' + (nbrChance - nbrTry) + ' vie';
     }
-  }while(nbrTry <= nbrChance && nbrUser !== nbrRandom);
+  }while(nbrTry < nbrChance && nbrUser !== nbrRandom);
 
   // Suivant le nombre de coup utilisé pour trouver le nombre !
   if(nbrTry >= nbrChance){
