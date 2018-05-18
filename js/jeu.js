@@ -54,7 +54,7 @@ function Manche(nbrRandom, min, max, msg, nbrChance) {
     }else{
       msg = 'Le nombre à deviner est plus petit ! il te reste ' + (nbrChance - nbrTry) + ' vie';
     }
-  }while(nbrTry < nbrChance && nbrUser !== nbrRandom);
+  }while(nbrTry < nbrChance && nbrUser != nbrRandom);
 
   // Suivant le nombre de coup utilisé pour trouver le nombre !
   if(nbrTry >= nbrChance){
